@@ -5,7 +5,7 @@ import "./globals.css"
 import { AppSidebar } from "./components/app-sidebar"
 import { ThemeProvider } from "./components/theme-provider.tsx"
 import { useTheme } from "next-themes"
-
+import useResponsive_layout  from '../hooks/responsive' 
 const inter = Inter({ subsets: ["latin"] })
 
 
@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   // Define dynamic background color and text color based on the theme
   const bgColor = theme === "light" ? "bg-white" : "bg-black-900"
   const textColor = theme === "light" ? "text-black" : "text-white"
-
+  const {winDowWidth}= useResponsive_layout()
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} ${textColor}`}>

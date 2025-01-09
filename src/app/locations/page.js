@@ -3,6 +3,8 @@
 import { motion } from "framer-motion"
 import { Header } from "../components/header"
 import { MapPin, Search, Edit, Trash2 } from "lucide-react"
+import { useTheme } from "next-themes"
+import Map from "../components/map"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -55,10 +57,20 @@ const locations = [
     manager: "Charlie Davis"
   }
 ]
+const entries = [
+  { id: 1, deviceName: "Device A", longitude: -74.0060, latitude: 40.7128 },
+  { id: 2, deviceName: "Device B", longitude: -118.2437, latitude: 34.0522 },
+  { id: 3, deviceName: "Device C", longitude: -87.6298, latitude: 41.8781 },
+  { id: 4, deviceName: "Device D", longitude: -95.3698, latitude: 29.7604 },
+  { id: 5, deviceName: "Device E", longitude: -112.0740, latitude: 33.4484 }
+];
+
 
 export default function LocationsPage() {
+  const { theme } = useTheme()
+  
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className={`flex flex-col min-h-screen ${theme === 'light' ? 'bg-white' : 'bg-gray-900'}`}>
       <Header />
       <motion.div
         className="container flex-1 py-6"
@@ -70,45 +82,14 @@ export default function LocationsPage() {
           variants={itemVariants}
           className="flex justify-between items-center mb-6"
         >
-          <h1 className="text-3xl font-bold">Stall Locations</h1>
-          <button className="btn btn-primary">
+          <h1 className={`text-3xl font-bold ${theme === 'light' ? 'text-black' : 'text-white'}`}>Stall Locations</h1>
+          <button className={`btn btn-primary ${theme === 'light' ? 'bg-blue-500' : 'bg-blue-700'}`}>
             <MapPin className="inline-block w-4 h-4 mr-2" /> Add Location
           </button>
         </motion.div>
-        <motion.div variants={itemVariants} className="card">
-          <div className="flex mb-4">
-            <input className="input mr-2" placeholder="Search locations..." />
-            <button className="btn btn-secondary">
-              <Search className="inline-block w-4 h-4 mr-2" /> Search
-            </button>
-          </div>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Manager</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {locations.map(location => (
-                <tr key={location.id}>
-                  <td>{location.name}</td>
-                  <td>{location.address}</td>
-                  <td>{location.manager}</td>
-                  <td>
-                    <button className="btn btn-secondary mr-2">
-                      <Edit className="inline-block w-4 h-4" />
-                    </button>
-                    <button className="btn btn-secondary">
-                      <Trash2 className="inline-block w-4 h-4" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <motion.div variants={itemVariants} className="card h-[50vh] w-[50vw]">
+        <Map entry={entries} />
+       
         </motion.div>
       </motion.div>
     </div>

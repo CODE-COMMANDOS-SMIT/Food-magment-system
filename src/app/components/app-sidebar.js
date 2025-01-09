@@ -46,7 +46,7 @@ export function AppSidebar() {
         <Menu className="w-5 h-5" />
       </button>
       <motion.aside
-        className={`${bgColor} ${textColor} w-64 min-h-screen p-4 fixed left-0 top-0 z-10 transform transition-all duration-300 ease-in-out ${
+        className={`${bgColor} ${textColor} w-64 min-h-screen p-4 fixed left-0 top-0 z-10 transform transition-all  ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0`}
         initial={{ x: -20, opacity: 0 }}
@@ -56,7 +56,7 @@ export function AppSidebar() {
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-xl font-bold">LOGO</h1>
           <button
-            className={`btn ${buttonBgColor} ${buttonTextColor} ${buttonHoverColor} p-2 rounded transition-colors duration-300`}
+            className={`btn ${buttonBgColor} ${buttonTextColor} ${buttonHoverColor} p-2 rounded transition-colors `}
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           >
             {theme === "light" ? (
@@ -77,7 +77,7 @@ export function AppSidebar() {
               >
                 <Link
                   href={item.href}
-                  className={`flex items-center p-2 rounded ${hoverColor} transition-colors duration-300`}
+                  className={`flex items-center p-2 rounded ${hoverColor} transition-colors `}
                 >
                   <item.icon className="w-5 h-5 mr-3" />
                   {item.label}
