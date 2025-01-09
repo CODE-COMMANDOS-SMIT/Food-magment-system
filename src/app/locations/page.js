@@ -54,7 +54,7 @@ const locations = [
     id: 5,
     name: "Quetta West",
     address: "202 Cedar Ln, Quetta",
-    manager: "Charlie Davis"
+    manager: "Charlie Daviss"
   }
 ]
 const entries = [
