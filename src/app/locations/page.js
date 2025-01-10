@@ -2,8 +2,81 @@
 
 import { motion } from "framer-motion";
 import { Header } from "../components/header";
-import { MapPin, Navigation } from "lucide-react";
+// import { MapPin, Navigation } from "lucide-react";
 import { useTheme } from "next-themes";
+import Map1 from "../components/map";
+const mockEntries = [
+  {
+    id: 4,
+    title: "Clifton Beach, Karachi",
+    lat: 24.8233,
+    lng: 67.032,
+    country: "Pakistan",
+  },
+  {
+    id: 5,
+    title: "Karachi Marina Club",
+    lat: 24.8178,
+    lng: 67.0348,
+    country: "Pakistan",
+  },
+  {
+    id: 6,
+    title: "Faisal Mosque, Karachi",
+    lat: 24.9056,
+    lng: 67.125,
+    country: "Pakistan",
+  },
+  {
+    id: 7,
+    title: "Mazar-e-Quaid, Karachi",
+    lat: 24.8589,
+    lng: 67.0581,
+    country: "Pakistan",
+  },
+  {
+    id: 8,
+    title: "Manora Island, Karachi",
+    lat: 24.808,
+    lng: 66.9757,
+    country: "Pakistan",
+  },
+  {
+    id: 9,
+    title: "Karachi Zoo",
+    lat: 24.8765,
+    lng: 67.069,
+    country: "Pakistan",
+  },
+  {
+    id: 10,
+    title: "Shahrah-e-Faisal, Karachi",
+    lat: 24.86,
+    lng: 67.08,
+    country: "Pakistan",
+  },
+  {
+    id: 11,
+    title: "The National Museum of Pakistan, Karachi",
+    lat: 24.8585,
+    lng: 67.0332,
+    country: "Pakistan",
+  },
+  {
+    id: 12,
+    title: "Karachi Beach Park",
+    lat: 24.843,
+    lng: 67.075,
+    country: "Pakistan",
+  },
+  {
+    id: 13,
+    title: "Hawke's Bay Beach, Karachi",
+    lat: 24.8278,
+    lng: 67.1773,
+    country: "Pakistan",
+  },
+];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,10 +101,6 @@ const LocationsPage = () => {
   const { theme } = useTheme();
 
   // Placeholder function for the "Current Location" button
-  const handleCurrentLocation = () => {
-    alert("Fetching current location...");
-    // Implement geolocation logic here
-  };
 
   return (
     <div
@@ -59,20 +128,11 @@ const LocationsPage = () => {
           </h1>
           <div className="flex space-x-4">
             <button
-              onClick={handleCurrentLocation}
-              className={`btn btn-secondary ${
-                theme === "light" ? "bg-gray-200 text-black" : "bg-gray-700 text-white"
-              }`}
-            >
-              <Navigation className="inline-block w-4 h-4 mr-2" />
-              Current Location
-            </button>
-            <button
               className={`btn btn-primary ${
                 theme === "light" ? "bg-blue-500" : "bg-blue-700"
               }`}
             >
-              <MapPin className="inline-block w-4 h-4 mr-2" /> Add Location
+              Add Location
             </button>
           </div>
         </motion.div>
@@ -80,18 +140,7 @@ const LocationsPage = () => {
           variants={itemVariants}
           className="card w-full flex-1 flex items-center justify-center"
         >
-          {/* Embedded Google Map */}
-          <div className="mapbox w-full h-[75vh]">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4304.340316704703!2d67.03967569242374!3d24.880772875423332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e5be8b50e7f%3A0x50067d506017de1d!2sGurumandir%20Chowrangi%2C%20Karachi%2C%20Karachi%20City%2C%20Sindh!5e0!3m2!1sen!2s!4v1723920331486!5m2!1sen!2s"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
+          <Map1 markers={mockEntries} />
         </motion.div>
       </motion.div>
     </div>
